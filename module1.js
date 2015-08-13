@@ -32,25 +32,62 @@ function getRandomInt(min, max) {
 $(document).ready(function() {
     var img = new Image();
     img.src = "img/cat.jpg";
-    makeMoreBlue(img);
+    //makeMoreRed(img, 150);
+    //makeMoreGreen(img, 100);
+    //makeMoreBlue(img, 200);
     //cutOffPicture(img);
+    brighten(img, 100);
 });
 
-function makeMoreBlue(img) {
+function makeMoreBlue(img, adjustment) {
     var pixels = ImageUtils.getPixels(img);
     var length = pixels.data.length;
     var data = pixels.data;
     for (var i = 0; i < length; i += 4) {
-        data[i + 2] = data[i + 2] + 200;
+        data[i + 2] = data[i + 2] + adjustment;
+    }
+    ImageUtils.putPixels(pixels, img.width, img.height);
+}
+
+function makeMoreGreen(img, adjustment){
+    var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
+    var data = pixels.data;
+    for (var i = 0; i < length; i += 4) {
+        data[i + 1] = data[i + 1] + adjustment;
+    }
+    ImageUtils.putPixels(pixels, img.width, img.height);
+}
+
+function makeMoreRed(img, adjustment){
+    var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
+    var data = pixels.data;
+    for (var i = 0; i < length; i += 4) {
+        data[i] = data[i] + adjustment;
     }
     ImageUtils.putPixels(pixels, img.width, img.height);
 }
 
 function cutOffPicture(img){
     var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
     var heightPixelsToHide = 100;
     for(var i = 0; i < img.width * heightPixelsToHide * 4; i++){
         pixels.data[i] = 255;
+    }
+    ImageUtils.putPixels(pixels, img.width, img.height);
+}
+
+function brighten(img, adjustment){
+    var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
+    var data = pixels.data;
+
+    for (var i = 0; i < length; i += 4) {
+        data[i] = data[i] + adjustment;
+        data[i + 1] = data[i + 1] + adjustment;
+        data[i + 2] = data[i + 2] + adjustment;
     }
     ImageUtils.putPixels(pixels, img.width, img.height);
 }
