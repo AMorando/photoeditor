@@ -73,9 +73,9 @@ function colourisePixel(originalRGBA, colour, level) {
 }
 
 function sepiaPixel(colour){
-    var modifiedRed = colour.red * 0.393 + colour.green * 0.769 + colour.blue * 0.189;
-    var modifiedGreen = colour.red * 0.349 + colour.green * 0.686 + colour.blue * 0.168;
-    var modifiedBlue = colour.red * 0.272 + colour.green * 0.534 + colour.blue * 0.131;
+    var modifiedRed = colour.red * 0.393 + colour.green * 0.769 + colour.blue * 0.189; //0.393, 0.769, 0.189
+    var modifiedGreen = colour.red * 0.349 + colour.green * 0.686 + colour.blue * 0.168;//0.349, 0.686, 0.168
+    var modifiedBlue = colour.red * 0.272 + colour.green * 0.534 + colour.blue * 0.131; //0.272, 0.534, 0.131
 
     return new RGBA(modifiedRed, modifiedGreen, modifiedBlue, colour.alpha);
 }
