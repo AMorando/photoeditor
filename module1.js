@@ -145,11 +145,47 @@ function makeNoiseFunky(img, level1, level2, level3){
     ImageUtils.putPixels(pixels, img.width, img.height);
 }
 
+//function changeOpacity(img, value){
+    //var pixels = ImageUtils.getPixels(img);
+    //var length = pixels.data.length;
+    //var data = pixels.data;
+
+    //for (var i = 3; i &lt; length; i += 4) {
+        //data[i] = value;
+    //}
+    //ImageUtils.putPixels(pixels, img.width, img.height);
+//}
+
+function makeInvertCutOff(img){
+    var pixels = ImageUtils.getPixels(img);
+    var length = pixels.data.length;
+    var data = pixels.data;
+    //var upByFour = 4
+
+    var heightPixelsToHide = 100;
+    for(var i = 0; i < img.width * heightPixelsToHide * 4; i++){
+        pixels.data[i] = 255;
+            //changeOpacity(img, 100);
+        }
+        for (var i = 0; i < length; i += 4) {
+            data[i] = 255 - data[i];
+            data[i + 1] = 255 - data[i + 1];
+            data[i + 2] = 255 - data[i + 2];
+
+        }
+    //var heightPixelsToHide = 100;
+    //for(var i = 0; i < img.width * heightPixelsToHide * 4; i++) {
+        //pixels.data[i] = 0;
+        //changeOpacity(img, 50)
+
+    ImageUtils.putPixels(pixels, img.width, img.height);
+}
+
 
 
 $(document).ready(function() {
     var img = new Image();
-    img.src = "img/cat.jpg";
+    img.src = "img/catburnededges.jpg";
     //makeMoreRed(img, 200);
     //makeMoreGreen(img, 100);
     //makeMoreBlue(img, 200);
@@ -158,5 +194,6 @@ $(document).ready(function() {
     //makeInvert(img);
     //makeNoise(img, 100, 200, 150);
     //makeFunky(img);
-    makeNoiseFunky(img, 100, 200, 150);
+    //makeNoiseFunky(img, 100, 200, 150);
+    makeInvertCutOff(img);
 });

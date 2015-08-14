@@ -129,11 +129,39 @@ function setPixel(data, i, colour) {
 }
 */
 
+/*function clipPixel(colour, range) {
+    var clippedRed = 0;
+
+
+    if(colour.red &gt; 255 - range) {
+        clippedRed = 255;
+    }
+
+    var clippedGreen = 0;
+    if(colour.green &gt; 255 - range) {
+        clippedGreen = 255;
+    }
+
+    var clippedBlue = 0;
+    if(colour.blue &gt; 255 - range) {
+        clippedBlue = 255;
+    }
+    var color = new RGBA(255, 0, 0, 255);
+    console.log(color.red);
+    console.log(color.green);
+    console.log(color.blue);
+    console.log(color.alpha);
+    setPixel(img, 0, color,)
+
+    return new RGBA(clippedRed, clippedGreen, clippedBlue, colour.alpha);
+}*/
+
+
 // function definitions here
 
 $(document).ready(function() {
     var img = new Image();
-    img.src = "img/cat.jpg";
+    img.src = "img/catburnededges.jpg";
 
     var color = new RGBA(255, 0, 0, 255);
     console.log(color.red);
@@ -142,6 +170,6 @@ $(document).ready(function() {
     console.log(color.alpha);
 
     //colourise(img, color, 50);
-    sepia(img);
-    //clipPixel(color, 100)
+    //sepia(img);
+    clipPixel(color, 100)
 });
